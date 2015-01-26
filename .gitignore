@@ -26,3 +26,9 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+public/app/
+public/js/app/config.js
+public/index.html
+public/index.tmp
+public/js/lib
