@@ -41,9 +41,11 @@ angular.module('httpModule', ['angular-loading-bar', 'ngAnimate'])
             },
             // When a request fails
             responseError: function (response) {
+                if (response.status === 401)
+                    $location.url('/login');
                 if (response.data !== null) {
                     $log.error(response.data);
-
+                    toastr.error(response.data.error);
                 }
                 return $q.reject(response);
             }

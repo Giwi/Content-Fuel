@@ -1,6 +1,38 @@
 {
-  "welcome" : {
-    "sub1" : "All your content, one API",
-    "para1" : "Manage content with your team once, publish it on any screen."
+  "welcome": {
+    "sub1": "All your content, one API",
+    "para1": "Manage content with your team once, publish it on any screen."
+  },
+  "signUp": {
+    "ph": {
+      "name": "Nom",
+      "firstName": "Prénom",
+      "email": "Adresse email"
+    },
+    "label": {
+      "name": "Nom",
+      "firstName": "Prénom",
+      "email": "Adresse email",
+      "passwd1": "Mot de passe",
+      "passwd2": "Confirmation"
+    },
+    "message": {
+      "email": {
+        "required": "L'adresse email est invalide"
+      },
+      "passwd": {
+        "strength": "Complexité du mot de passe",
+        "ko": "Les mots de passe ne correspondent pas"
+      }
+    },
+    "signUp": {
+      "ok": "Vous êtes maintenant enregistré, vous pouvez vous connecter."
+    }
+  },
+  "buttons": {
+    "ok": "Ok",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "submit": "Valider"
   }
 }

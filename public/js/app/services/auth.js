@@ -8,6 +8,19 @@ angular.module('authAPI', []).value('authUrl', '/api')
                 method : "POST",
                 data : '{"email" : "' + email + '", "password" : "' + password + '"}'
             });
+        },
+        signup : function(signup) {
+            return $http({
+                url : authUrl + '/signup',
+                method : "POST",
+                data : signup
+            });
+        },
+        check : function() {
+            return $http({
+                url : authUrl + '/loggedin',
+                method : "GET"
+            });
         }
     };
 });

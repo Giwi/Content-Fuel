@@ -1,0 +1,5 @@
+{
+  "signup" : {
+    "email_taken" : "Cette adresse email existe déjà"
+  }
+}

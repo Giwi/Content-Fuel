@@ -6,7 +6,7 @@ try {
 angular.module(
     'ContentFuelApp',
     ['ngRoute', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'pascalprecht.translate', 'httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
-        'public'])
+        'commonsDirectives', 'public'])
 
     .value('duScrollOffset', 50)
 
@@ -36,4 +36,9 @@ angular.module(
         $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
             $translate.refresh();
         });
+        $rootScope.message = '';
+        $rootScope.logout = function () {
+            $rootScope.message = 'Logged out.';
+            $http.post('/logout');
+        };
     });
