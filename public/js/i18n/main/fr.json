@@ -34,5 +34,16 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "submit": "Valider"
+  } ,
+  "auth" : {
+    "login-failed" : "Mauvais couple email/mot de passe",
+    "logout-failed" : "La déconnexion a échouée"
+  },
+  "header-menu" : {
+    "home" : "Accueil",
+    "blog" : "Blog",
+    "contact" : "Contact",
+    "about" : "A propos",
+    "login" : "Connexion"
   }
 }

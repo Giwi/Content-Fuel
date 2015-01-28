@@ -6,7 +6,7 @@ try {
 angular.module(
     'ContentFuelApp',
     ['ngRoute', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'pascalprecht.translate', 'httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
-        'commonsDirectives', 'public'])
+        'commonsDirectives','headerMenu', 'eventbus', 'public', 'private'])
 
     .value('duScrollOffset', 50)
 

@@ -21,6 +21,12 @@ angular.module('authAPI', []).value('authUrl', '/api')
                 url : authUrl + '/loggedin',
                 method : "GET"
             });
+        },
+        logout : function() {
+            return $http({
+                url : authUrl + '/logout',
+                method : "GET"
+            });
         }
     };
 });

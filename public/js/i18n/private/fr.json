@@ -1,0 +1,11 @@
+{
+  "private-menu": {
+    "main": "Mon dashboard",
+    "spaces": "Mes espaces",
+    "profile": "Mon profile",
+    "logout": "Déconexion"
+  },
+  "dashboard" : {
+    "title" :"Mon dashboard"
+  }
+}
