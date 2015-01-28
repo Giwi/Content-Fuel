@@ -3,9 +3,24 @@
     "main": "Mon dashboard",
     "spaces": "Mes espaces",
     "profile": "Mon profile",
-    "logout": "Déconexion"
+    "logout": "Déconnexion"
   },
-  "dashboard" : {
-    "title" :"Mon dashboard"
+  "dashboard": {
+    "title": "Mon dashboard"
+  },
+  "spaces": {
+    "title": "Mes espaces",
+    "name": "Nom",
+    "key": "Clef",
+    "description": "Description",
+    "entries": "Entrées",
+    "folder": "Dossiers",
+    "createDate": "Créé le",
+    "explore": "Explorer",
+    "add" : "Créer un espace",
+    "delete" : {
+      "ask" : "Etes-vous sur de vouloir supprimer l'espace {{name}}?",
+      "success" : "Cet espace a été supprimé"
+    }
   }
 }

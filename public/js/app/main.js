@@ -5,12 +5,12 @@ try {
 }
 angular.module(
     'ContentFuelApp',
-    ['ngRoute', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'pascalprecht.translate', 'httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
-        'commonsDirectives','headerMenu', 'eventbus', 'public', 'private'])
+    ['ngRoute', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'dialogs.main', 'pascalprecht.translate', 'httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
+       'ngTable', 'commonsDirectives','headerMenu', 'eventbus', 'public', 'private'])
 
     .value('duScrollOffset', 50)
 
-    .config(function ($translateProvider, $translatePartialLoaderProvider, $httpProvider, $logProvider, $tooltipProvider, ENV) {
+    .config(function ($translateProvider, $translatePartialLoaderProvider, $httpProvider, $logProvider, $tooltipProvider, ENV, dialogsProvider) {
         'use strict';
         $tooltipProvider.options({animation: false});
         $translateProvider.useLoader('$translatePartialLoader', {
@@ -30,6 +30,28 @@ angular.module(
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $httpProvider.interceptors.push('httpInterceptor');
+
+        dialogsProvider.useEscClose(true);
+        dialogsProvider.useCopy(false);
+
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
     })
     .run(function ($rootScope, $translate) {
         'use strict';

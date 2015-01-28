@@ -1,6 +1,5 @@
 var User = require('../models/user');
 
-
 module.exports = function (app, passport) {
 
     // =====================================
@@ -13,7 +12,7 @@ module.exports = function (app, passport) {
 
     // process the login form
     app.post('/api/login', passport.authenticate('local-login'), function (req, res) {
-        req.user.password = undefined;
+        // req.user.password = undefined;
         res.send(req.user);
     });
 
@@ -28,15 +27,13 @@ module.exports = function (app, passport) {
             if (user) {
                 res.send(500, {error: req.i18n.t("signup.email_taken")});
             } else {
-
                 // if there is no user with that email
                 // create the user
                 var newUser = new User();
-
                 // set the user's local credentials
                 newUser = new User(req.body);
                 newUser.password = newUser.generateHash(req.body.passwd);
-                delete newUser.passwd;
+                newUser.passwd = undefined;
                 // save the user
                 newUser.save(function (err) {
                     if (err) {

@@ -3,7 +3,10 @@ angular.module('privateMenu', ['eventbus', 'authAPI'])
         'use strict';
         return {
             restrict: 'AE',
-            controller: function ($scope, $translatePartialLoader, authAPI, $rootScope, $filter) {
+            scope : {
+              active  : '@'
+            },
+            controller: function ($scope, $translatePartialLoader, authAPI, $rootScope, $filter, eventbus,$location, $log) {
                 $translatePartialLoader.addPart('private');
                 $translatePartialLoader.addPart('main');
                 $scope.logout = function() {
@@ -11,9 +14,17 @@ angular.module('privateMenu', ['eventbus', 'authAPI'])
                         delete $rootScope.user;
                         eventbus.prepForBroadcast("logout", data);
                         $location.url('/');
+                        toastr.error($filter('translate')('auth.logout-ok'));
                     }).error(function () {
                         toastr.error($filter('translate')('auth.logout-failed'));
                     });
+                };
+                $scope.isActive = function(item) {
+                    if (angular.equals(item, $scope.active)) {
+                        return 'active';
+                    } else {
+                        return '';
+                    }
                 };
             },
             templateUrl: '../../templates/directives/privateMenu.html'

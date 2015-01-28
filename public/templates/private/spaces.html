@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-3">
+        <private-menu active="spaces"></private-menu>
+    </div>
+    <div class="col-md-9">
+        <div class="page-header" id="top">
+            <div class="btn-group pull-right" role="group">
+                <a class="btn btn-primary" ng-click="addSpace()" tooltip="{{'spaces.add' | translate}}"
+                   tooltip-placement="bottom">
+                    <span class="fa fa fa-plus-square"></span> {{'spaces.add' | translate}}</a>
+            </div>
+            <h1>
+                <span class="fa fa-cubes"></span> {{'spaces.title' | translate}}
+            </h1>
+        </div>
+
+        <div loading-container="tableParams.settings().$loading">
+            <table ng-table="tableParams" show-filter="true" class="table">
+                <tbody>
+                <tr ng-repeat="space in $data">
+                    <td data-title="('spaces.name' | translate)" filter="{ 'name': 'text' }" sortable="name">
+                        {{space.name}} {{$loading}}
+                    </td>
+                    <td data-title="('spaces.description' | translate)">
+                        {{space.description}}
+                    </td>
+                    <td data-title="('spaces.entries' | translate)" sortable="entries">
+                        {{space.entries}}
+                    </td>
+                    <td data-title="('spaces.folder' | translate)" sortable="folder">
+                        {{space.folder}}
+                    </td>
+                    <td data-title="('spaces.createDate' | translate)" sortable="createDate">
+                        {{space.createDate | date : 'short'}}
+                    </td>
+                    <td>
+                        <a ng-click="edit(space)" tooltip="{{'common.edit' | translate}}"
+                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-edit">
+                        </a>
+                        <a ng-click="del(space)" tooltip="{{'common.delete' | translate}}"
+                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-thrash">
+                        </a>
+                        <a ng-click="show(space)" tooltip="{{'space.explore' | translate}}"
+                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-search">
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

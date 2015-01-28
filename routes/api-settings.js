@@ -1,6 +1,15 @@
 var Space = require('../models/space');
 var Locale = require('../models/locale');
 module.exports = function (app, passport) {
+    // get List
+    app.get('/api/space',passport.authenticate('bearer', { session: false }), function (req, res, next) {
+        Space.find({owner : req.user._id}).exec(function (err, spaces) {
+            if (err) {
+                throw err;
+            }
+            res.json(spaces);
+        });
+    });
     // get space
     app.get('/api/space/:id', passport.authenticate('bearer', {session: false}), function (req, res, next) {
         Space.find(req.params.id).exec(function (err, spaces) {
@@ -11,7 +20,7 @@ module.exports = function (app, passport) {
         });
     });
     // create space
-    app.post('/api/space', passport.authenticate('bearer', {session: false}), function (req, res, next) {
+    app.put('/api/space', passport.authenticate('bearer', {session: false}), function (req, res, next) {
         var newSpace = new Space();
         newSpace.name = req.body.name;
         Locale.find(null).exec(function (err, locales) {
@@ -32,17 +41,17 @@ module.exports = function (app, passport) {
 
     // delete a space
     app.delete('/api/space/:id', passport.authenticate('bearer', {session: false}), function(req, res) {
-        Todo.remove({
+        Space.remove({
             _id : req.params.id
-        }, function(err, todo) {
+        }, function(err, space) {
             if (err)
                 res.send(err);
 
             // get and return all the todos after you create another
-            Todo.find(function(err, todos) {
+            Space.find(function(err, spaces) {
                 if (err)
                     res.send(err)
-                res.json(todos);
+                res.json(spaces);
             });
         });
     });

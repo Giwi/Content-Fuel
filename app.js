@@ -8,7 +8,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
-var BearerStrategy = require('passport-http-bearer');
+
 var TwitterStrategy = require('passport-twitter');
 var GoogleStrategy = require('passport-google');
 var FacebookStrategy = require('passport-facebook');
@@ -45,8 +45,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride());
-app.use(cookieParser())
-app.use(bodyParser());
+app.use(cookieParser());
 // required for passport
 app.use(session({secret: 'ilovescotchscotchyscotchscotch'})); // session secret
 app.use(passport.initialize());
@@ -65,19 +64,7 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-passport.use(new BearerStrategy(
-    function (token, done) {
-        User.findOne({token: token}, function (err, user) {
-            if (err) {
-                return done(err);
-            }
-            if (!user) {
-                return done(null, false);
-            }
-            return done(null, user, {scope: 'all'});
-        });
-    }
-));
+
 // error handlers
 
 // development error handler

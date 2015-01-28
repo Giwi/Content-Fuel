@@ -1,4 +1,8 @@
 {
+  "common": {
+    "delete": "Supprimer",
+    "edit": "Modifier"
+  },
   "welcome": {
     "sub1": "All your content, one API",
     "para1": "Manage content with your team once, publish it on any screen."
@@ -37,7 +41,9 @@
   } ,
   "auth" : {
     "login-failed" : "Mauvais couple email/mot de passe",
-    "logout-failed" : "La déconnexion a échouée"
+    "logout-failed" : "La déconnexion a échouée",
+    "logout-ok" : "Vous êtes déconnecté",
+    "session-expired" : "Votre session a expiré"
   },
   "header-menu" : {
     "home" : "Accueil",
@@ -45,5 +51,8 @@
     "contact" : "Contact",
     "about" : "A propos",
     "login" : "Connexion"
+  },
+  "date" : {
+    "format": "dd/mm/yyyy"
   }
 }

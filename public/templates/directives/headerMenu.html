@@ -5,12 +5,12 @@
 
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="isActive('home')"><span class="fa fa-home"></span> <a href="#" translate="header-menu.home"></a></li>
-                <li ng-class="isActive('blog')"><span class="fa fa-newspaper-o"></span> <a href="#/blog" translate="header-menu.blog"></a></li>
-                <li ng-class="isActive('about')"><span class="fa fa-info"></span> <a href="#/about" translate="header-menu.about"></a></li>
-                <li ng-class="isActive('contact')"><span class="fa fa-envelope"></span> <a href="#/contact" translate="header-menu.contact"></a></li>
-                <li ng-hide="user" ng-class="isActive('login')"><span class="fa fa-sign-in"></span> <a href="#/login" translate="header-menu.login"></a></li>
-                <li ng-show="user" ng-class="isActive('private')"><span class="fa fa-user"></span> <a href="#/dashboard">{{user.firstname}} {{user.name}}</a></li>
+                <li ng-class="isActive('home')"><a href="#/"><span class="fa fa-home"></span> {{'header-menu.home' | translate}}</a></li>
+                <li ng-class="isActive('blog')"><a href="#/blog"><span class="fa fa-newspaper-o"></span> {{'header-menu.blog' | translate}}</a></li>
+                <li ng-class="isActive('about')"><a href="#/about"><span class="fa fa-info"></span> {{'header-menu.about' | translate}}</a></li>
+                <li ng-class="isActive('contact')"><a href="#/contact"><span class="fa fa-envelope"></span> {{'header-menu.contact' | translate}}</a></li>
+                <li ng-hide="user" ng-class="isActive('login')"><a href="#/login"><span class="fa fa-sign-in"></span> {{'header-menu.login'|translate}}</a></li>
+                <li ng-show="user" ng-class="isActive('private')"><a href="#/dashboard"><span class="fa fa-user"></span> {{user.firstname}} {{user.name}}</a></li>
             </ul>
         </div>
     </div>

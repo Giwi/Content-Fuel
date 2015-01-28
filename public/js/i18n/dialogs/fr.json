@@ -1,0 +1,16 @@
+{
+	"DIALOGS_ERROR": "Erreur",
+	"DIALOGS_ERROR_MSG": "Une erreur inconnue s'est produite",
+	"DIALOGS_CLOSE": "Fermer",
+	"DIALOGS_PLEASE_WAIT": "Veuillez patienter",
+	"DIALOGS_PLEASE_WAIT_ELIPS": "Veuillez patienter...",
+	"DIALOGS_PLEASE_WAIT_MSG": "Veuillez attendre la fin de l'opération.",
+	"DIALOGS_PERCENT_COMPLETE": "% terminé",
+	"DIALOGS_NOTIFICATION": "Notification",
+	"DIALOGS_NOTIFICATION_MSG": "Notificacion inconnue de l'application.",
+	"DIALOGS_CONFIRMATION": "Confirmation",
+	"DIALOGS_CONFIRMATION_MSG": "Une confirmation est nécessaire.",
+	"DIALOGS_OK": "Ok",
+	"DIALOGS_YES": "Oui",
+	"DIALOGS_NO": "Non"
+}

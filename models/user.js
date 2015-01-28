@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt-nodejs');
 var Role = require('../models/role');
 var userSchema = mongoose.Schema({
     roles: [Role],
-    spaces: [mongoose.Schema.Types.ObjectId],
     admin: Boolean,
     createDate: {type: Date, default: Date.now},
     token: String,

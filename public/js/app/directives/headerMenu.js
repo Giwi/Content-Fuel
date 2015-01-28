@@ -3,7 +3,7 @@ angular.module('headerMenu', ['eventbus'])
         'use strict';
         return {
             restrict: 'AE',
-            controller: function ($scope) {
+            controller: function ($scope, $rootScope) {
                 $translatePartialLoader.addPart('main');
                 $scope.currentItem = 'home';
                 $scope.$on('eventbus', function () {
@@ -11,6 +11,7 @@ angular.module('headerMenu', ['eventbus'])
                         $scope.user = eventbus.data;
                     } else if ("logout" === eventbus.message) {
                         delete $scope.user;
+                        delete $rootScope.user;
                     } else if ("page" == eventbus.message) {
                         $scope.currentItem = eventbus.data;
                     }

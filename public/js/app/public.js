@@ -16,21 +16,11 @@ angular.module('public', ['ngRoute', 'authAPI'])
  * @class ContentFuelApp.public.MainCtrl
  * @description main controller for the welcome page
  */
-    .controller('MainCtrl', function ($scope,$translatePartialLoader, authAPI, $log, $rootScope, $q) {
+    .controller('MainCtrl', function ($scope,$translatePartialLoader, checkLogin, eventbus) {
         'use strict';
-        var deferred = $q.defer();
         $translatePartialLoader.addPart('main');
-        if(!$rootScope.user) {
-            authAPI.check().success(function (data) {
-                $rootScope.user = angular.copy(data);
-                deferred.resolve(data);
-            }).error(function () {
-                toastr.error('Authentication failed.');
-            });
-        } else {
-            deferred.resolve($rootScope.user);
-        }
-        deferred.promise.then(function (user) {
+        eventbus.prepForBroadcast("page", "home");
+        checkLogin.check(false).then(function (user) {
             $scope.user = user;
         });
     })
@@ -38,26 +28,27 @@ angular.module('public', ['ngRoute', 'authAPI'])
     .controller('LoginCtrl', function ($scope, $rootScope, $translatePartialLoader, authAPI, $log, $location, eventbus, $filter) {
         'use strict';
         $translatePartialLoader.addPart('main');
+        eventbus.prepForBroadcast("page", "login");
         $scope.login = function () {
             authAPI.login($scope.email, $scope.password).success(function (data) {
-                $log.debug(data);
                 $rootScope.user = angular.copy(data);
+                $log.debug(data);
                 eventbus.prepForBroadcast("login", data);
-                $location.url('/');
+                $location.url('/dashboard');
             }).error(function () {
                 toastr.error($filter('translate')('auth.login-failed'));
             });
         };
     })
 
-    .controller('SignupCtrl', function ($scope, $translatePartialLoader, authAPI, $log, $location, $filter) {
+    .controller('SignupCtrl', function ($scope, $translatePartialLoader, authAPI, $log, $location, $filter, eventbus) {
         'use strict';
+        eventbus.prepForBroadcast("page", "login");
         $scope.signUp = {};
         $translatePartialLoader.addPart('main');
         $scope.submit = function () {
             authAPI.signup($scope.signUp).success(function (data) {
-                $log.debug(data);
-                toastr.success($filter('translate')('signUp.ok'));
+                toastr.success($filter('translate')('signUp.signUp.ok'));
                 $location.url('/');
             });
         };

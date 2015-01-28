@@ -7,14 +7,47 @@
  * @requires {@link https://github.com/chieffancypants/angular-loading-bar|chieffancypants.loadingBar}
  * @requires {@link https://docs.angularjs.org/api/ngAnimate|ngAnimate}
  */
-angular.module('httpModule', ['angular-loading-bar', 'ngAnimate'])
+angular.module('httpModule', ['angular-loading-bar', 'ngAnimate', 'authAPI'])
 
     .config(function (cfpLoadingBarProvider) {
         'use strict';
         cfpLoadingBarProvider.includeSpinner = true;
     })
 
-    .factory('httpInterceptor', function ($q, $rootScope, $window, ENV, $log) {
+    .service("checkLogin", function (authAPI, $q, $rootScope, $log, $location, $filter, eventbus, $translatePartialLoader) {
+        $translatePartialLoader.addPart('main');
+        this.check = function (notify) {
+            if (angular.isUndefined(notify)) {
+                notify = true;
+            }
+            var deferred = $q.defer();
+            if (!$rootScope.user) {
+                authAPI.check().success(function (data) {
+                    if (data === 0) {
+                        $location.url('/');
+                        if (notify) {
+                            toastr.error($filter('translate')('auth.session-expired'));
+                        }
+                        eventbus.prepForBroadcast("logout", data);
+                        deferred.reject();
+                    } else {
+                        $rootScope.user = angular.copy(data);
+                        eventbus.prepForBroadcast("login", data);
+                        deferred.resolve(data);
+                    }
+                }).error(function () {
+                    eventbus.prepForBroadcast("logout", data);
+                    toastr.error($filter('translate')('auth.login-failed'));
+                });
+            } else {
+                deferred.resolve($rootScope.user);
+                eventbus.prepForBroadcast("login", $rootScope.user);
+            }
+            return deferred.promise;
+        };
+    })
+
+    .factory('httpInterceptor', function ($q, $rootScope, $window, ENV, $log, $location, eventbus) {
         'use strict';
         return {
             // Everytime a request starts
@@ -23,8 +56,8 @@ angular.module('httpModule', ['angular-loading-bar', 'ngAnimate'])
                     config.headers['Content-Type'] = 'application/json';
                     config.responseType = 'json';
                 }
-                if (config.url.startsWith('/api/private') || config.url.startsWith('/api/admin') || config.url.startsWith('/api/logout')) {
-                    config.headers.token = $window.sessionStorage.contentFuelSession;
+                if (angular.isDefined($rootScope.user)) {
+                    config.headers.Authorization = 'Bearer ' + $rootScope.user.token;
                 }
                 if (!config.url.startsWith('template') && !config.url.startsWith('js/i18n') && !config.url.startsWith('http') && !config.url.startsWith('ngTagsInput') && !config.url.startsWith('ng-table')) {
                     if (config.url.startsWith('/')) {
@@ -41,11 +74,13 @@ angular.module('httpModule', ['angular-loading-bar', 'ngAnimate'])
             },
             // When a request fails
             responseError: function (response) {
-                if (response.status === 401)
+                if (response.status === 401) {
                     $location.url('/login');
+                    eventbus.prepForBroadcast("logout", null);
+                }
                 if (response.data !== null) {
                     $log.error(response.data);
-                    toastr.error(response.data.error);
+                    toastr.error(response.data);
                 }
                 return $q.reject(response);
             }
