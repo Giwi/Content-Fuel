@@ -56,10 +56,10 @@ angular.module('httpModule', ['angular-loading-bar', 'ngAnimate', 'authAPI'])
                     config.headers['Content-Type'] = 'application/json';
                     config.responseType = 'json';
                 }
-                if (angular.isDefined($rootScope.user)) {
+                if ($rootScope.user !== null && angular.isDefined($rootScope.user)) {
                     config.headers.Authorization = 'Bearer ' + $rootScope.user.token;
                 }
-                if (!config.url.startsWith('template') && !config.url.startsWith('js/i18n') && !config.url.startsWith('http') && !config.url.startsWith('ngTagsInput') && !config.url.startsWith('ng-table')) {
+                if (!config.url.startsWith('template') && !config.url.startsWith('js/i18n') && !config.url.startsWith('http') && !config.url.startsWith('ngTagsInput') && !config.url.startsWith('/dialogs')) {
                     if (config.url.startsWith('/')) {
                         config.url = ENV.apiEndPoint + config.url;
                     } else {

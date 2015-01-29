@@ -1,6 +1,12 @@
 var Space = require('../models/space');
 var Locale = require('../models/locale');
 module.exports = function (app, passport) {
+    app.get('/*', function(req, res, next){
+        res.setHeader('Last-Modified', (new Date()).toUTCString());
+        res.setHeader('Date', new Date().toString());
+        next();
+    });
+
     // get List
     app.get('/api/space',passport.authenticate('bearer', { session: false }), function (req, res, next) {
         Space.find({owner : req.user._id}).exec(function (err, spaces) {
@@ -23,6 +29,7 @@ module.exports = function (app, passport) {
     app.put('/api/space', passport.authenticate('bearer', {session: false}), function (req, res, next) {
         var newSpace = new Space();
         newSpace.name = req.body.name;
+        newSpace.description = req.body.description;
         Locale.find(null).exec(function (err, locales) {
             if (err) {
                 throw err;
@@ -30,7 +37,10 @@ module.exports = function (app, passport) {
             newSpace.locales = locales;
         });
         newSpace.contributors.push(req.user._id);
-        // save the user
+        newSpace.owner = req.user._id;
+        newSpace.createDate = new Date();
+
+        // save the space
         newSpace.save(function (err) {
             if (err) {
                 throw err;

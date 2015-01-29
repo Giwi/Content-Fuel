@@ -1,11 +1,24 @@
 angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
 
     .config(function ($routeProvider) {
+        function checkUser(checkLogin, $rootScope) {
+            checkLogin.check(false).then(function (user) {
+                $rootScope.user = user;
+            });
+        }
+
+        checkUser.$inject = ['checkLogin', '$rootScope'];
         $routeProvider.when('/dashboard', {
             controller: 'DashBoardCtrl',
+            resolve: {
+                user: checkUser
+            },
             templateUrl: '../../templates/private/dashboard.html'
         }).when('/spaces', {
             controller: 'SpacesCtrl',
+            resolve: {
+                user: checkUser
+            },
             templateUrl: '../../templates/private/spaces.html'
         });
     })
@@ -13,45 +26,22 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
     .controller('DashBoardCtrl', function ($scope, $translatePartialLoader, checkLogin, eventbus) {
         'use strict';
         eventbus.prepForBroadcast("page", "private");
-        checkLogin.check().then(function (user) {
-            $scope.user = user;
-        });
     })
 
-    .controller('SpacesCtrl', ['$scope', '$translatePartialLoader', 'checkLogin', 'eventbus', 'spacesAPI', '$q', 'ngTableParams', 'dialogs', function ($scope, $translatePartialLoader, checkLogin, eventbus, spacesAPI, $q, NgTableParams, dialogs) {
+    .controller('SpacesCtrl', function ($scope, $log, $translatePartialLoader, checkLogin, eventbus, spacesAPI, $q, $filter, dialogs) {
         'use strict';
         eventbus.prepForBroadcast("page", "private");
         $translatePartialLoader.addPart('dialogs');
-        var deferred = $q.defer();
-        var spacesProm = deferred.promise;
-        $scope.tableParams = new NgTableParams({
-            page: 1,            // show first page
-            count: 10,          // count per page
-            sorting: {
-                name: 'asc'     // initial sorting
-            }
-        }, {
-            total: 0,           // length of data
-            getData: function ($defer, params) {
-                // ajax request to api
-                spacesProm.then(function (data) {
-                    params.total(data.total);
-                    // set new data
-                    $defer.resolve(data.result);
-                });
-            }
-        });
-        checkLogin.check().then(function (user) {
-            $scope.user = user;
-            retrieveData();
-        });
+        $scope.spacesCache = [];
         function retrieveData() {
+            var deferred = $q.defer();
             spacesAPI.getList().then(function (data) {
-                deferred.resolve(data);
+                deferred.resolve(data.data);
             });
+            return deferred.promise;
         }
 
-        $scope.addSpace = function() {
+        $scope.addSpace = function () {
             dialogs.create('../../templates/modals/spaceCreation.html', 'spaceCreationModalCtrl', {
                 size: 'lg',
                 keyboard: true,
@@ -59,8 +49,9 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
                 windowClass: 'my-class'
             }).result.then(function () {
                     // nothing
-                }, function () {
-                    // nothing
+                }, function (newSpace) {
+                    $scope.spacesCache.push(newSpace);
+                    toastr.success($filter('translate')('spaces.insertSuccess'));
                 });
         };
 
@@ -69,22 +60,32 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
                 name: space.name
             })).result.then(function (btn) {
                     spacesAPI.del(space._id).success(function (data) {
-                        if (data.success) {
-                            retrieveData();
-                            toastr.success($filter('translate')('spaces.delete.success'));
-                        }
+                        $scope.spacesCache = data;
+                        toastr.success($filter('translate')('spaces.delete.success'));
                     });
                 }, function (btn) {
                     // nothing
                 }
             );
         };
-    }])
 
-    .controller('spaceCreationModalCtrl', function ($scope, $modalInstance) {
+        retrieveData().then(function (data) {
+            if (data !== null) {
+                $scope.spacesCache = data;
+            }
+        });
+    })
+
+    .controller('spaceCreationModalCtrl', function ($scope, checkLogin, $modalInstance, spacesAPI, $log, $filter) {
         'use strict';
+        $scope.newSpace = {};
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
+        };
+        $scope.update = function () {
+            spacesAPI.add($scope.newSpace).success(function (data) {
+                $modalInstance.close(data);
+            });
         };
     })
 //

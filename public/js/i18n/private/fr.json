@@ -18,6 +18,7 @@
     "createDate": "Créé le",
     "explore": "Explorer",
     "add" : "Créer un espace",
+    "insertSuccess" : "Votre espace a été créé",
     "delete" : {
       "ask" : "Etes-vous sur de vouloir supprimer l'espace {{name}}?",
       "success" : "Cet espace a été supprimé"

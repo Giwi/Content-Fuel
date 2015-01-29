@@ -56,7 +56,7 @@ require('./routes/index')(app, passport);
 require('./routes/login')(app, passport);
 require('./routes/api-settings')(app, passport);
 
-
+app.disable('etag');
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

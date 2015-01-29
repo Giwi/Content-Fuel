@@ -14,40 +14,38 @@
             </h1>
         </div>
 
-        <div loading-container="tableParams.settings().$loading">
-            <table ng-table="tableParams" show-filter="true" class="table">
-                <tbody>
-                <tr ng-repeat="space in $data">
-                    <td data-title="('spaces.name' | translate)" filter="{ 'name': 'text' }" sortable="name">
-                        {{space.name}} {{$loading}}
-                    </td>
-                    <td data-title="('spaces.description' | translate)">
-                        {{space.description}}
-                    </td>
-                    <td data-title="('spaces.entries' | translate)" sortable="entries">
-                        {{space.entries}}
-                    </td>
-                    <td data-title="('spaces.folder' | translate)" sortable="folder">
-                        {{space.folder}}
-                    </td>
-                    <td data-title="('spaces.createDate' | translate)" sortable="createDate">
-                        {{space.createDate | date : 'short'}}
-                    </td>
-                    <td>
-                        <a ng-click="edit(space)" tooltip="{{'common.edit' | translate}}"
-                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-edit">
-                        </a>
-                        <a ng-click="del(space)" tooltip="{{'common.delete' | translate}}"
-                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-thrash">
-                        </a>
-                        <a ng-click="show(space)" tooltip="{{'space.explore' | translate}}"
-                           tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-search">
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th translate="spaces.name"></th>
+                <th translate="spaces.description"></th>
+                <th translate="spaces.entries"></th>
+                <th translate="spaces.folder"></th>
+                <th translate="spaces.createDate"></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="space in spacesCache track by $index">
+                <td>{{space.name}}</td>
+                <td>{{space.description}}</td>
+                <td>{{space.entries.length}}</td>
+                <td>{{space.folder.length}}</td>
+                <td>{{space.createDate | date : 'short'}}</td>
+                <td>
+                    <a ng-click="edit(space)" tooltip="{{'common.edit' | translate}}"
+                       tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-edit">
+                    </a>
+                    <a ng-click="del(space)" tooltip="{{'common.delete' | translate}}"
+                       tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-trash-o">
+                    </a>
+                    <a ng-click="show(space)" tooltip="{{'space.explore' | translate}}"
+                       tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-search">
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
