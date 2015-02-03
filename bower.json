@@ -43,7 +43,8 @@
     "angular-file-upload": "~1.1.5",
     "angular-loading-bar": "~0.6.0",
     "ng-table": "~0.4.3",
-    "angular-dialog-service": "~5.2.6"
+    "angular-dialog-service": "~5.2.6",
+    "bootswatch-dist": "3.2.0-amelia"
   },
   "resolutions": {
     "angular": "1.2.28",

@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Content', mongoose.Schema({
-    fields : [Schema.Types.ObjectId],
-    locale : Schema.Types.ObjectId
+    fields : [mongoose.Schema.Types.ObjectId],
+    locale : mongoose.Schema.Types.ObjectId
 }));
 
 

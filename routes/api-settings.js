@@ -1,15 +1,15 @@
 var Space = require('../models/space');
 var Locale = require('../models/locale');
 module.exports = function (app, passport) {
-    app.get('/*', function(req, res, next){
+    app.get('/*', function (req, res, next) {
         res.setHeader('Last-Modified', (new Date()).toUTCString());
         res.setHeader('Date', new Date().toString());
         next();
     });
 
     // get List
-    app.get('/api/space',passport.authenticate('bearer', { session: false }), function (req, res, next) {
-        Space.find({owner : req.user._id}).exec(function (err, spaces) {
+    app.get('/api/space', passport.authenticate('bearer', {session: false}), function (req, res, next) {
+        Space.find({owner: req.user._id}).exec(function (err, spaces) {
             if (err) {
                 throw err;
             }
@@ -17,8 +17,8 @@ module.exports = function (app, passport) {
         });
     });
     // get space
-    app.get('/api/space/:id', passport.authenticate('bearer', {session: false}), function (req, res, next) {
-        Space.find(req.params.id).exec(function (err, spaces) {
+    app.get('/api/space/get/:id', passport.authenticate('bearer', {session: false}), function (req, res, next) {
+        Space.findById(req.params.id).populate('contributors').populate('owner').populate('entries').populate('folder').exec(function (err, spaces) {
             if (err) {
                 throw err;
             }
@@ -50,15 +50,15 @@ module.exports = function (app, passport) {
     });
 
     // delete a space
-    app.delete('/api/space/:id', passport.authenticate('bearer', {session: false}), function(req, res) {
+    app.delete('/api/space/:id', passport.authenticate('bearer', {session: false}), function (req, res) {
         Space.remove({
-            _id : req.params.id
-        }, function(err, space) {
+            _id: req.params.id
+        }, function (err, space) {
             if (err)
                 res.send(err);
 
             // get and return all the todos after you create another
-            Space.find(function(err, spaces) {
+            Space.find(function (err, spaces) {
                 if (err)
                     res.send(err)
                 res.json(spaces);

@@ -20,6 +20,12 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
                 user: checkUser
             },
             templateUrl: '../../templates/private/spaces.html'
+        }).when('/space/:id', {
+            controller: 'SpaceDetailCtrl',
+            resolve: {
+                user: checkUser
+            },
+            templateUrl: '../../templates/private/spaceDetail.html'
         });
     })
 
@@ -76,8 +82,9 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
         });
     })
 
-    .controller('spaceCreationModalCtrl', function ($scope, checkLogin, $modalInstance, spacesAPI, $log, $filter) {
+    .controller('spaceCreationModalCtrl', function ($scope, checkLogin, $modalInstance, spacesAPI, $translatePartialLoader,$log, $filter) {
         'use strict';
+        $translatePartialLoader.addPart('dialogs');
         $scope.newSpace = {};
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
@@ -85,6 +92,22 @@ angular.module('private', ['ngRoute', 'privateMenu', 'spacesAPI'])
         $scope.update = function () {
             spacesAPI.add($scope.newSpace).success(function (data) {
                 $modalInstance.close(data);
+            });
+        };
+    })
+
+    .controller('SpaceDetailCtrl', function ($scope, $translatePartialLoader, checkLogin, eventbus, spacesAPI, $log, $filter, $routeParams) {
+        'use strict';
+        $translatePartialLoader.addPart('dialogs');
+        eventbus.prepForBroadcast("page", "private");
+        $scope.space = {};
+        spacesAPI.getDetail($routeParams.id).success(function(data) {
+           $scope.space = data;
+            $log.debug(data);
+        });
+        $scope.update = function () {
+            spacesAPI.add($scope.space).success(function (data) {
+                toastr.success($filter('translate')('spaces.insertSuccess'));
             });
         };
     })

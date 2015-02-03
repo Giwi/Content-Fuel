@@ -7,7 +7,20 @@
     "sub1": "All your content, one API",
     "para1": "Manage content with your team once, publish it on any screen."
   },
+  "signIn": {
+    "title": "Connectez-vous",
+    "button" : "Connexion",
+    "ph": {
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    },
+    "label": {
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    }
+  },
   "signUp": {
+    "title": "Créez votyre compte",
     "ph": {
       "name": "Nom",
       "firstName": "Prénom",
@@ -37,22 +50,23 @@
     "ok": "Ok",
     "cancel": "Annuler",
     "close": "Fermer",
-    "submit": "Valider"
-  } ,
-  "auth" : {
-    "login-failed" : "Mauvais couple email/mot de passe",
-    "logout-failed" : "La déconnexion a échouée",
-    "logout-ok" : "Vous êtes déconnecté",
-    "session-expired" : "Votre session a expiré"
+    "submit": "Valider",
+    "back": "Retour"
   },
-  "header-menu" : {
-    "home" : "Accueil",
-    "blog" : "Blog",
-    "contact" : "Contact",
-    "about" : "A propos",
-    "login" : "Connexion"
+  "auth": {
+    "login-failed": "Mauvais couple email/mot de passe",
+    "logout-failed": "La déconnexion a échouée",
+    "logout-ok": "Vous êtes déconnecté",
+    "session-expired": "Votre session a expiré"
   },
-  "date" : {
+  "header-menu": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "contact": "Contact",
+    "about": "A propos",
+    "login": "Connexion"
+  },
+  "date": {
     "format": "dd/mm/yyyy"
   }
 }

@@ -1,5 +1,10 @@
 <div class="container text-center">
-    <form novalidate class="form-horizontal form-general" accept-charset="UTF-8" name="registerForm"
+    <div class="page-header" id="top">
+        <h1>
+            <span class="fa fa-sign-in"></span> {{'signUp.title' | translate}}
+        </h1>
+    </div>
+    <form novalidate class="form-horizontal form-general well" accept-charset="UTF-8" name="registerForm"
           ng-submit="submit()">
         <div class="form-group" ng-class="{'has-error': registerForm.name.$invalid}">
             <label class="col-md-4 control-label requiredLabel" translate='signUp.label.name'></label>

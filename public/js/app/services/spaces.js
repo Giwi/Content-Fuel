@@ -17,7 +17,7 @@ angular.module('spacesAPI', []).value('spacesUrl', '/api/space/')
             },
             getDetail : function(id) {
                 return $http({
-                    url : spacesUrl + id,
+                    url : spacesUrl + 'get/' + id,
                     method : "GET"
                 });
             },

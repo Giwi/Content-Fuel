@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-3">
+        <private-menu active="spaces"></private-menu>
+    </div>
+    <div class="col-md-9">
+        <div class="page-header" id="top">
+            <h1>
+                <span class="fa fa-cube"></span> {{'spaces.space' | translate}} {{space.name}}
+            </h1>
+        </div>
+
+        <form class="form-horizontal well">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" translate="spaces.createdBy"></label>
+
+                    <div class="col-lg-4">
+                        {{space.owner.firstname}} {{space.owner.name}} <a href="mailto:{{space.owner.email}}">{{space.owner.email}}</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" translate="spaces.createDate"></label>
+
+                    <div class="col-lg-4">
+                        {{space.createDate | date : 'short'}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" translate="spaces.key"></label>
+
+                    <div class="col-lg-4">
+                        {{space._id}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" translate="spaces.name"></label>
+
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" ng-model="space.name"
+                               placeholder="{{'spaces.name' | translate}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" translate="spaces.description"></label>
+
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" ng-model="space.description"
+                               placeholder="{{'spaces.description' | translate}}"/>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a href="#/spaces" class="btn btn-warning" translate="buttons.back"></a>
+                    <a ng-click="update()" class="btn btn-success" translate="buttons.submit"></a>
+                </div>
+            </fieldset>
+        </form>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 translate="spaces.contributors"></h4>
+                <table class="table table-striped table-condensed table-hover">
+                    <tbody>
+                    <tr ng-repeat="u in space.contributors track by $index">
+                        <td>{{u.firstname}} {{u.name}}</td>
+                        <td><a href="mailto:{{u.email}}">{{u.email}}</a></td>
+                        <td>
+                            <a ng-click="delContributor(u)" tooltip="{{'common.delete' | translate}}"
+                               tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-trash-o">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="btn-group pull-right" role="group">
+                    <a class="btn btn-primary" ng-click="addContributor()"
+                       tooltip="{{'contributors.add' | translate}}"
+                       tooltip-placement="bottom">
+                        <span class="fa fa fa-plus-square"></span> {{'contributors.add' | translate}}</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h4 translate="spaces.entries"></h4>
+                <table class="table table-striped table-condensed table-hover">
+                    <tbody>
+                    <tr ng-repeat="e in space.entries track by $index">
+                        <td>{{e.name}}</td>
+                        <td>{{e.createDate | date : 'short'}}</td>
+                        <td>{{e.status}}</td>
+                        <td>{{e.version}}</td>
+                        <td>
+                            <a ng-click="editEntry(e)" tooltip="{{'common.edit' | translate}}"
+                               tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-edit">
+                            </a>
+                            <a ng-click="delEntry(e)" tooltip="{{'common.delete' | translate}}"
+                               tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-trash-o">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="btn-group pull-right" role="group">
+                    <a class="btn btn-primary" ng-click="addContributor()"
+                       tooltip="{{'contributors.add' | translate}}"
+                       tooltip-placement="bottom">
+                        <span class="fa fa fa-plus-square"></span> {{'contributors.add' | translate}}</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

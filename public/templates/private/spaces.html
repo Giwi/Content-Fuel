@@ -14,7 +14,7 @@
             </h1>
         </div>
 
-        <table class="table">
+        <table class="table table-striped table-condensed table-hover">
             <thead>
             <tr>
                 <th translate="spaces.name"></th>
@@ -39,7 +39,7 @@
                     <a ng-click="del(space)" tooltip="{{'common.delete' | translate}}"
                        tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-trash-o">
                     </a>
-                    <a ng-click="show(space)" tooltip="{{'space.explore' | translate}}"
+                    <a href="#/space/{{space._id}}" tooltip="{{'spaces.explore' | translate}}"
                        tooltip-placement="bottom" class="btn btn-default btn-xs fa fa-search">
                     </a>
                 </td>
