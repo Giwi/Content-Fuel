@@ -1,0 +1,32 @@
+<div class="modal-header dialog-header-confirm">
+    <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">
+        <i class="fa fa-plus-square"></i> {{'models.add' | translate}}
+    </h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-lg-3 control-label" translate="models.name"></label>
+
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" ng-model="newModel.name"
+                           placeholder="{{'models.name' | translate}}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label" translate="models.description"></label>
+
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" ng-model="newModel.description"
+                           placeholder="{{'models.description' | translate}}"/>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-click="cancel()" class="btn btn-warning" translate="buttons.cancel"></button>
+    <button type="button" ng-click="update()" class="btn btn-success" translate="buttons.submit"></button>
+</div>

@@ -8,7 +8,5 @@ module.exports = mongoose.model('EntryModel', mongoose.Schema({
     createDate : { type: Date, default: Date.now },
     modifiedDate : { type: Date, default: Date.now },
     version : Number,
-    author : mongoose.Schema.Types.ObjectId,
-    pubDate :{ type: Date, default: Date.now },
-    pubAuthor : mongoose.Schema.Types.ObjectId
+    author : mongoose.Schema.Types.ObjectId
 }));

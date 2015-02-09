@@ -1,4 +1,4 @@
-angular.module('privateMenu', ['eventbus', 'authAPI'])
+angular.module('contentfuel.privateMenu', ['contentfuel.eventbus', 'contentfuel.authAPI'])
     .directive("privateMenu", function () {
         'use strict';
         return {

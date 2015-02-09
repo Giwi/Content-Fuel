@@ -1,17 +1,20 @@
 <nav class="hidden-print hidden-xs hidden-sm affix well">
     <ul class="nav nav-pills nav-stacked">
         <li ng-class="isActive('dashboard')"><a href="#/dashboard">
-            <span class="fa fa-tachometer"></span> {{'private-menu.main' | translate}}</a>
+            <span class="fa fa-desktop fa-fw"></span> {{'private-menu.main' | translate}}</a>
         </li>
         <li ng-class="isActive('spaces')"><a href="#/spaces">
-            <span class="fa fa-cubes"></span> {{'private-menu.spaces' | translate}}</a>
+            <span class="fa fa-cubes fa-fw"></span> {{'private-menu.spaces' | translate}}</a>
+        </li>
+        <li ng-class="isActive('models')"><a href="#/models">
+            <span class="fa fa-pencil-square-o fa-fw"></span> {{'private-menu.models' | translate}}</a>
         </li>
         <li class="nav-divider"></li>
         <li ng-class="isActive('profile')"><a href="#/profile">
-            <span class="fa fa-user"></span> {{'private-menu.profile' | translate}}</a>
+            <span class="fa fa-user fa-fw"></span> {{'private-menu.profile' | translate}}</a>
         </li>
         <li><a ng-click="logout()" href="">
-            <span class="fa fa-sign-out"></span> {{'private-menu.logout' | translate}}</a>
+            <span class="fa fa-sign-out fa-fw"></span> {{'private-menu.logout' | translate}}</a>
         </li>
     </ul>
 </nav>

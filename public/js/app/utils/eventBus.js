@@ -1,18 +1,18 @@
 /**
  * Module EventBus
  *
- * @class qaobee.tools.eventbus
- * @author Xavier MARIN
- * @copyright <b>QaoBee</b>.
+ * @class contentfuel.eventbus
+ * @author Giwi
+ * @copyright <b>Giwi</b>.
  */
-angular.module('eventbus', [])
+angular.module('contentfuel.eventbus', [])
 
     .factory('eventbus', function ($rootScope) {
         'use strict';
         var sharedService = {message : '', data : {}};
 
         /**
-         * @memberOf qaobee.tools.eventbus
+         * @memberOf contentfuel.eventbus
          * @function prepForBroadcast
          * @description Poste d'un message sur le bus
          * @param {String} msg nom du topic
@@ -24,7 +24,7 @@ angular.module('eventbus', [])
             this.broadcastItem();
         };
         /**
-         * @memberOf qaobee.tools.eventbus
+         * @memberOf contentfuel.eventbus
          * @function broadcastItem
          * @description Propagation du message
          * @private

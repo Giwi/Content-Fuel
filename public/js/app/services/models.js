@@ -1,29 +1,29 @@
-angular.module('contentfuel.spacesAPI', []).value('spacesUrl', '/api/space/')
+angular.module('contentfuel.modelsAPI', []).value('modelsUrl', '/api/model/')
 
-    .factory('spacesAPI', function($http, spacesUrl) {
+    .factory('modelsAPI', function($http, modelsUrl) {
         return {
             getList : function() {
                 return $http({
-                    url : spacesUrl,
+                    url : modelsUrl,
                     method : "GET"
                 });
             },
             add : function(space) {
                 return $http({
-                    url : spacesUrl,
+                    url : modelsUrl,
                     method : "PUT",
                     data : space
                 });
             },
             getDetail : function(id) {
                 return $http({
-                    url : spacesUrl + 'get/' + id,
+                    url : modelsUrl + 'get/' + id,
                     method : "GET"
                 });
             },
             del : function(id) {
                 return $http({
-                    url : spacesUrl + id,
+                    url : modelsUrl + id,
                     method : "DELETE"
                 });
             }

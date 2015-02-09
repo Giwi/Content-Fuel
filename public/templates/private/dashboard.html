@@ -5,8 +5,72 @@
     <div class="col-md-9">
         <div class="page-header" id="top">
             <h1>
-                <span class="fa fa-tachometer"></span> {{'dashboard.title' | translate}}
+                <span class="fa fa-desktop"></span> {{'dashboard.title' | translate}}
             </h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="hero-widget well well-sm">
+                        <div class="icon ">
+                            <i class="fa fa-cubes fa-fw"></i>
+                        </div>
+                        <div class="text">
+                            <var>{{meta.spaces.length}}</var>
+                            <label class="text-muted" translate="dashboard.spaces"></label>
+                        </div>
+                        <div class="options">
+                            <a href="#/spaces" class="btn btn-default btn-lg"><i class="fa fa-search"></i>
+                                {{'private-menu.spaces' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hero-widget well well-sm">
+                        <div class="icon ">
+                            <i class="fa fa-file fa-fw"></i>
+                        </div>
+                        <div class="text">
+                            <var>{{meta.entries.length}}</var>
+                            <label class="text-muted" translate="dashboard.entries"></label>
+                        </div>
+                        <div class="options">
+                            <a href="#/entries" class="btn btn-default btn-lg"><i class="fa fa-search"></i>
+                                {{'private-menu.entries' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hero-widget well well-sm">
+                        <div class="icon ">
+                            <i class="fa fa-file fa-fw"></i>
+                        </div>
+                        <div class="text">
+                            <var>{{meta.entries.length}}</var>
+                            <label class="text-muted" translate="dashboard.entries"></label>
+                        </div>
+                        <div class="options">
+                            <a href="#/entries" class="btn btn-default btn-lg"><i class="fa fa-search"></i>
+                                {{'private-menu.entries' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hero-widget well well-sm">
+                        <div class="icon ">
+                            <i class="fa fa-file fa-fw"></i>
+                        </div>
+                        <div class="text">
+                            <var>{{meta.entries.length}}</var>
+                            <label class="text-muted" translate="dashboard.entries"></label>
+                        </div>
+                        <div class="options">
+                            <a href="#/entries" class="btn btn-default btn-lg"><i class="fa fa-search"></i>
+                                {{'private-menu.entries' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-angular.module('authAPI', []).value('authUrl', '/api')
+angular.module('contentfuel.authAPI', []).value('authUrl', '/api')
 
     .factory('authAPI', function($http, authUrl) {
     return {

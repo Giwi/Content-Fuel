@@ -1,50 +1,16 @@
 /**
- * Module gérant les appels synchrones
  *
- * @class qaobee.rest.httpModule
- * @author Xavier MARIN
- * @copyright <b>QaoBee</b>.
+ * @class contentfuel.httpModule
+ * @author Giwi
+ * @copyright <b>Giwi</b>.
  * @requires {@link https://github.com/chieffancypants/angular-loading-bar|chieffancypants.loadingBar}
  * @requires {@link https://docs.angularjs.org/api/ngAnimate|ngAnimate}
  */
-angular.module('httpModule', ['angular-loading-bar', 'ngAnimate', 'authAPI'])
+angular.module('contentfuel.httpModule', ['angular-loading-bar', 'ngAnimate', 'contentfuel.authAPI'])
 
     .config(function (cfpLoadingBarProvider) {
         'use strict';
         cfpLoadingBarProvider.includeSpinner = true;
-    })
-
-    .service("checkLogin", function (authAPI, $q, $rootScope, $log, $location, $filter, eventbus, $translatePartialLoader) {
-        $translatePartialLoader.addPart('main');
-        this.check = function (notify) {
-            if (angular.isUndefined(notify)) {
-                notify = true;
-            }
-            var deferred = $q.defer();
-            if (!$rootScope.user) {
-                authAPI.check().success(function (data) {
-                    if (data === 0) {
-                        $location.url('/');
-                        if (notify) {
-                            toastr.error($filter('translate')('auth.session-expired'));
-                        }
-                        eventbus.prepForBroadcast("logout", data);
-                        deferred.reject();
-                    } else {
-                        $rootScope.user = angular.copy(data);
-                        eventbus.prepForBroadcast("login", data);
-                        deferred.resolve(data);
-                    }
-                }).error(function () {
-                    eventbus.prepForBroadcast("logout", data);
-                    toastr.error($filter('translate')('auth.login-failed'));
-                });
-            } else {
-                deferred.resolve($rootScope.user);
-                eventbus.prepForBroadcast("login", $rootScope.user);
-            }
-            return deferred.promise;
-        };
     })
 
     .factory('httpInterceptor', function ($q, $rootScope, $window, ENV, $log, $location, eventbus) {

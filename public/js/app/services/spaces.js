@@ -1,4 +1,4 @@
-angular.module('spacesAPI', []).value('spacesUrl', '/api/space/')
+angular.module('contentfuel.spacesAPI', []).value('spacesUrl', '/api/space/')
 
     .factory('spacesAPI', function($http, spacesUrl) {
         return {

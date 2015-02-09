@@ -1,5 +1,5 @@
 {
   "undef": true,
   "unused": true,
-  "predef": [ "angular", "toastr", "moment", "dateDiff", "google", "$", "setTimeout" ]
+  "predef": [ "angular", "toastr", "moment", "dateDiff", "google", "$", "setTimeout", "module", "require" ]
 }

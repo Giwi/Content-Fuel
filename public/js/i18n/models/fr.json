@@ -1,0 +1,18 @@
+{
+  "models": {
+    "title": "Mes modèles",
+    "model": "Modèle",
+    "name": "Nom",
+    "key": "Clef",
+    "description": "Description",
+    "createDate": "Créé le",
+    "createdBy": "Créé par",
+    "explore": "Explorer",
+    "add": "Créer un modèle",
+    "insertSuccess": "Votre modèle a été créé",
+    "delete": {
+      "ask": "Etes-vous sur de vouloir supprimer le modèle {{name}}?",
+      "success": "Ce modèle a été supprimé"
+    }
+  }
+}

@@ -5,14 +5,15 @@ try {
 }
 angular.module(
     'ContentFuelApp',
-    ['ngRoute', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'dialogs.main', 'pascalprecht.translate', 'httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
-       'ngTable', 'commonsDirectives','headerMenu', 'eventbus', 'public', 'private'])
+    ['ngRoute', 'tmh.dynamicLocale', 'config', 'ui.bootstrap', 'ngSanitize', 'ngCookies', 'dialogs.main', 'pascalprecht.translate', 'contentfuel.httpModule', 'angular-loading-bar', 'ngAnimate', 'duScroll', 'templates-main',
+       'ngTable', 'contentfuel.commonsDirectives','contentfuel.common-config','contentfuel.headerMenu', 'contentfuel.eventbus', 'contentfuel.public', 'contentfuel.private'])
 
     .value('duScrollOffset', 50)
 
-    .config(function ($translateProvider, $translatePartialLoaderProvider, $httpProvider, $logProvider, $tooltipProvider, ENV, dialogsProvider) {
+    .config(function ($translateProvider, $translatePartialLoaderProvider, $httpProvider, $logProvider, $tooltipProvider, ENV, dialogsProvider, tmhDynamicLocaleProvider) {
         'use strict';
         $tooltipProvider.options({animation: false});
+        tmhDynamicLocaleProvider.localeLocationPattern('lib/angular-i18n/angular-locale_{{locale}}.js');
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: 'js/i18n/{part}/{lang}.json'
         });
@@ -53,7 +54,7 @@ angular.module(
             "hideMethod": "fadeOut"
         };
     })
-    .run(function ($rootScope, $translate) {
+    .run(function ($rootScope, $translate, $http) {
         'use strict';
         $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
             $translate.refresh();

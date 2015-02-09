@@ -1,4 +1,4 @@
-angular.module('commonsDirectives', [])
+angular.module('contentfuel.commonsDirectives', [])
 
 
 

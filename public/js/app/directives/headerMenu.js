@@ -1,4 +1,4 @@
-angular.module('headerMenu', ['eventbus'])
+angular.module('contentfuel.headerMenu', ['contentfuel.eventbus'])
     .directive("headerMenu", function (eventbus, $log, $translatePartialLoader) {
         'use strict';
         return {

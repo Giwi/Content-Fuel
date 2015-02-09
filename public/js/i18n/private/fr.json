@@ -2,32 +2,14 @@
   "private-menu": {
     "main": "Mon dashboard",
     "spaces": "Mes espaces",
+    "models" : "Mes modèles",
     "profile": "Mon profile",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "entries" : "Contenu"
   },
   "dashboard": {
-    "title": "Mon dashboard"
-  },
-  "contributors" : {
-    "add" : "Ajouter"
-  },
-  "spaces": {
-    "title": "Mes espaces",
-    "space" : "Espace",
-    "name": "Nom",
-    "key": "Clef",
-    "description": "Description",
-    "entries": "Entrées",
-    "folder": "Dossiers",
-    "createDate": "Créé le",
-    "createdBy" : "Créé par",
-    "contributors" : "Contributeurs",
-    "explore": "Explorer",
-    "add" : "Créer un espace",
-    "insertSuccess" : "Votre espace a été créé",
-    "delete" : {
-      "ask" : "Etes-vous sur de vouloir supprimer l'espace {{name}}?",
-      "success" : "Cet espace a été supprimé"
-    }
+    "title": "Mon dashboard",
+    "spaces" : "Espaces",
+    "entries" : "Contenu"
   }
 }

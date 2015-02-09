@@ -54,8 +54,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./routes/index')(app, passport);
 require('./routes/login')(app, passport);
-require('./routes/api-settings')(app, passport);
-
+require('./routes/api-settings')(app);
+require('./routes/api-spaces')(app, passport);
+require('./routes/api-models')(app, passport);
+require('./routes/api-dashboard')(app, passport);
 app.disable('etag');
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

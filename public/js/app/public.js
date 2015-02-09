@@ -1,6 +1,6 @@
-angular.module('public', ['ngRoute', 'authAPI'])
+angular.module('contentfuel.public', ['ngRoute', 'contentfuel.authAPI'])
 
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, metaDatasProvider) {
         $routeProvider.when('/', {
             controller: 'MainCtrl',
             templateUrl: '../../../templates/public/main.html'
@@ -16,13 +16,10 @@ angular.module('public', ['ngRoute', 'authAPI'])
  * @class ContentFuelApp.public.MainCtrl
  * @description main controller for the welcome page
  */
-    .controller('MainCtrl', function ($scope,$translatePartialLoader, checkLogin, eventbus) {
+    .controller('MainCtrl', function ($scope, $translatePartialLoader, eventbus) {
         'use strict';
         $translatePartialLoader.addPart('main');
         eventbus.prepForBroadcast("page", "home");
-        checkLogin.check(false).then(function (user) {
-            $scope.user = user;
-        });
     })
 
     .controller('LoginCtrl', function ($scope, $rootScope, $translatePartialLoader, authAPI, $log, $location, eventbus, $filter) {
@@ -47,7 +44,7 @@ angular.module('public', ['ngRoute', 'authAPI'])
         $scope.signUp = {};
         $translatePartialLoader.addPart('main');
         $scope.submit = function () {
-            authAPI.signup($scope.signUp).success(function (data) {
+            authAPI.signup($scope.signUp).success(function () {
                 toastr.success($filter('translate')('signUp.signUp.ok'));
                 $location.url('/');
             });
