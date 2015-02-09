@@ -3,13 +3,13 @@ angular.module('public', ['ngRoute', 'authAPI'])
     .config(function ($routeProvider) {
         $routeProvider.when('/', {
             controller: 'MainCtrl',
-            templateUrl: '../../templates/public/main.html'
+            templateUrl: '../../../templates/public/main.html'
         }).when('/login', {
             controller: 'LoginCtrl',
-            templateUrl: '../../templates/public/login.html'
+            templateUrl: '../../../templates/public/login.html'
         }).when('/signup', {
             controller: 'SignupCtrl',
-            templateUrl: '../../templates/public/signup.html'
+            templateUrl: '../../../templates/public/signup.html'
         });
     })
 /**
