@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('EntryModel', mongoose.Schema({
-    status: mongoose.Schema.Types.ObjectId,
+    status: {type : mongoose.Schema.Types.ObjectId, ref : 'Status'},
     name: String,
     description: String,
-    fields : [mongoose.Schema.Types.ObjectId],
+    fields : [{type : mongoose.Schema.Types.ObjectId, ref : 'Field'}],
     createDate : { type: Date, default: Date.now },
     modifiedDate : { type: Date, default: Date.now },
     version : Number,
-    author : mongoose.Schema.Types.ObjectId
+    author : {type : mongoose.Schema.Types.ObjectId, ref : 'User'}
 }));

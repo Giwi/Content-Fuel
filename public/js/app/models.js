@@ -67,11 +67,13 @@ angular.module('contentfuel.models', ['ngRoute', 'contentfuel.modelsAPI'])
         });
     })
 
-    .controller('ModelCreationModalCtrl', function ($scope, $modalInstance, modelsAPI, $translatePartialLoader) {
+    .controller('ModelCreationModalCtrl', function ($scope, $modalInstance, modelsAPI, fieldsAPI, $translatePartialLoader) {
         'use strict';
         $translatePartialLoader.addPart('dialogs');
         $translatePartialLoader.addPart('models');
         $scope.newModel = {};
+
+        $scope.fileds =
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };

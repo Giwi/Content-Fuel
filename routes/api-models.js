@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
         newModel.version = 1;
 
 
-        // save the space
+        // save the model
         newModel.save(function (err) {
             if (err) {
                 throw err;
@@ -41,7 +41,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    // delete a space
+    // delete a model
     app.delete('/api/model/:id', passport.authenticate('bearer', {session: false}), function (req, res) {
         EntryModel.remove({
             _id: req.params.id
