@@ -57,6 +57,7 @@ require('./routes/login')(app, passport);
 require('./routes/api-settings')(app);
 require('./routes/api-spaces')(app, passport);
 require('./routes/api-models')(app, passport);
+require('./routes/api-content')(app, passport);
 require('./routes/api-dashboard')(app, passport);
 app.disable('etag');
 // catch 404 and forward to error handler
