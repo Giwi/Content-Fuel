@@ -2,7 +2,7 @@ var EntryModel = require('../models/entryModel');
 module.exports = function (app, passport) {
     // get List
     app.get('/api/model', passport.authenticate('bearer', {session: false}), function (req, res, next) {
-        EntryModel.find({owner: req.user._id}).populate('status').exec(function (err, models) {
+        EntryModel.find({author: req.user._id}).populate('status').exec(function (err, models) {
             if (err) {
                 throw err;
             }
